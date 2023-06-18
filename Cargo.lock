@@ -39,13 +39,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "sdl2-rust-experiment"
-version = "0.1.0"
-dependencies = [
- "sdl2",
-]
-
-[[package]]
 name = "sdl2-sys"
 version = "0.35.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -54,6 +47,13 @@ dependencies = [
  "cfg-if",
  "libc",
  "version-compare",
+]
+
+[[package]]
+name = "venture"
+version = "0.1.0"
+dependencies = [
+ "sdl2",
 ]
 
 [[package]]
