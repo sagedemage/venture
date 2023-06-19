@@ -40,7 +40,7 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
         .build()
         .map_err(|e| e.to_string())?;
 
-    let mut canvas = window
+    let mut canvas: render::Canvas<video::Window> = window
         .into_canvas()
         .software()
         .build()
