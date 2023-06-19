@@ -1,4 +1,4 @@
-/* Physics */
+/* Physics implementations */
 use crate::object;
 
 pub fn activate_collision(player: &mut object::Player<'_>, object: &object::Object<'_>) {
