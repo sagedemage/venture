@@ -82,14 +82,47 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
     let mut player: Player<'_> = Player {
         texture: texture_creator.load_texture(player_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
         speed: 2,
     };
 
-    let tree: Object<'_> = Object {
+    /* Tree Objects */
+    // trees near the top of the window
+    let tree1: Object<'_> = Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
+    };
+
+    let tree2: Object<'_> = Object {
+        texture: texture_creator.load_texture(tree_image_path)?,
+        srcrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
+    };
+
+    let tree3: Object<'_> = Object {
+        texture: texture_creator.load_texture(tree_image_path)?,
+        srcrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
+    };
+
+    // trees near the bottom of the window
+    let tree4: Object<'_> = Object {
+        texture: texture_creator.load_texture(tree_image_path)?,
+        srcrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
+    };
+
+    let tree5: Object<'_> = Object {
+        texture: texture_creator.load_texture(tree_image_path)?,
+        srcrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
+    };
+
+    let tree6: Object<'_> = Object {
+        texture: texture_creator.load_texture(tree_image_path)?,
+        srcrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
     };
 
     let music: mixer::Music<'_> = mixer::Music::from_file(theme_music_path)?;
@@ -131,7 +164,12 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
         }
 
         /* Object collision */
-        activate_collision(&mut player, &tree);
+        activate_collision(&mut player, &tree1);
+        activate_collision(&mut player, &tree2);
+        activate_collision(&mut player, &tree3);
+        activate_collision(&mut player, &tree4);
+        activate_collision(&mut player, &tree5);
+        activate_collision(&mut player, &tree6);
 
         /* Player boundaries */
         if player.dstrect.x < 0 {
@@ -155,7 +193,12 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
         canvas.set_draw_color(Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(&player.texture, player.srcrect, player.dstrect)?;
-        canvas.copy(&tree.texture, tree.srcrect, tree.dstrect)?;
+        canvas.copy(&tree1.texture, tree1.srcrect, tree1.dstrect)?;
+        canvas.copy(&tree2.texture, tree2.srcrect, tree2.dstrect)?;
+        canvas.copy(&tree3.texture, tree3.srcrect, tree3.dstrect)?;
+        canvas.copy(&tree4.texture, tree4.srcrect, tree4.dstrect)?;
+        canvas.copy(&tree5.texture, tree5.srcrect, tree5.dstrect)?;
+        canvas.copy(&tree6.texture, tree6.srcrect, tree6.dstrect)?;
         canvas.present();
         std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
