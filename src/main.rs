@@ -53,6 +53,7 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
         texture: texture_creator.load_texture(player_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(0, 0, 50, 50),
+        speed: 2,
     };
 
     let music: mixer::Music<'_> = mixer::Music::from_file(theme_music_path)?;
@@ -78,19 +79,19 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
         /* Player Movement Keybindings */
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Right) {
             // player moves right
-            player.dstrect.x += 2;
+            player.dstrect.x += player.speed;
         }
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Left) {
             // player moves left
-            player.dstrect.x -= 2;
+            player.dstrect.x -= player.speed;
         }
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Up) {
             // player moves up
-            player.dstrect.y -= 2;
+            player.dstrect.y -= player.speed;
         }
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Down) {
             // player moves down
-            player.dstrect.y += 2;
+            player.dstrect.y += player.speed;
         }
 
         /* Player boundaries */
