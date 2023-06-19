@@ -18,7 +18,7 @@ const LEVEL_WIDTH: u32 = 750;
 const LEVEL_HEIGHT: u32 = 500;
 
 fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path) -> Result<(), String> {
-    /* Run Game */
+    /* Run the Game */
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
 
