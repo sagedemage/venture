@@ -105,7 +105,7 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
         let vertex_gap: i32 = 2;
 
         /* Object collision */
-        if player.dstrect.y < tree.dstrect.y + 50 && player.dstrect.y + 50 - vertex_gap > tree.dstrect.y + vertex_gap {
+        if player.dstrect.y < tree.dstrect.y + 50 - vertex_gap && player.dstrect.y + 50 > tree.dstrect.y + vertex_gap {
             if player.dstrect.x + 50 > tree.dstrect.x && player.dstrect.x < tree.dstrect.x + 25 {
                 // left collision
                 player.dstrect.x = tree.dstrect.x - 50; 
@@ -114,6 +114,17 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
                 // right collision
                 player.dstrect.x = tree.dstrect.x + 50; 
             }
+        }
+
+        else if player.dstrect.x < tree.dstrect.x - vertex_gap + 50 && player.dstrect.x + 50 > tree.dstrect.x + vertex_gap {
+            if player.dstrect.y + 50 > tree.dstrect.y && player.dstrect.y < tree.dstrect.y + 25 {
+                // top collision
+                player.dstrect.y = tree.dstrect.y - 50;
+            }
+            else if player.dstrect.y < tree.dstrect.y + 50 && player.dstrect.y > tree.dstrect.y + 25 {
+                // bottom collision
+                player.dstrect.y = tree.dstrect.y + 50;
+            }    
         }
 
         /* Player boundaries */
