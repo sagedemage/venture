@@ -4,6 +4,7 @@ use sdl2::render;
 use sdl2::rect;
 
 pub struct Player<'a> {
+    /* Player Object */
     pub texture: render::Texture<'a>,
     pub srcrect: rect::Rect,
     pub dstrect: rect::Rect,
@@ -11,6 +12,7 @@ pub struct Player<'a> {
 }
 
 pub struct Object<'a> {
+    /* Generic Object */
     pub texture: render::Texture<'a>,
     pub srcrect: rect::Rect,
     pub dstrect: rect::Rect,

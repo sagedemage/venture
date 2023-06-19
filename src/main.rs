@@ -18,6 +18,7 @@ const LEVEL_WIDTH: u32 = 750;
 const LEVEL_HEIGHT: u32 = 500;
 
 fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path) -> Result<(), String> {
+    /* Run Game */
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
 
@@ -177,7 +178,6 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
 }
 
 fn main() -> Result<(), String> {
-    // image path
     let player_image_path: &Path = Path::new("assets/art/player.png");
     let tree_image_path: &Path = Path::new("assets/art/tree.png");
     let theme_music_path: &Path = Path::new("assets/music/cool.ogg");
