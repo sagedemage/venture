@@ -101,7 +101,7 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
 
     /* Game loop */
     'running: loop {
-        // Click Keybindings
+        /* Click Keybindings */
         for event in sdl.event_pump()?.poll_iter() {
             match event {
                 Event::Quit {..} 
