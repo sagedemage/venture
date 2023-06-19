@@ -12,12 +12,14 @@ use std::path::Path;
 use sdl2::mixer;
 
 mod player;
+mod object;
 use player::Player;
+use object::Object;
 
 const LEVEL_WIDTH: u32 = 750;
 const LEVEL_HEIGHT: u32 = 500;
 
-pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), String> {
+pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path) -> Result<(), String> {
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
 
@@ -54,6 +56,12 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(0, 0, 50, 50),
         speed: 2,
+    };
+
+    let tree: Object<'_> = Object {
+        texture: texture_creator.load_texture(tree_image_path)?,
+        srcrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
     };
 
     let music: mixer::Music<'_> = mixer::Music::from_file(theme_music_path)?;
@@ -116,6 +124,7 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
         canvas.set_draw_color(Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(&player.texture, player.srcrect, player.dstrect)?;
+        canvas.copy(&tree.texture, tree.srcrect, tree.dstrect)?;
         canvas.present();
         std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
@@ -126,7 +135,8 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
 fn main() -> Result<(), String> {
     // image path
     let player_image_path: &Path = Path::new("assets/art/player.png");
+    let tree_image_path: &Path = Path::new("assets/art/tree.png");
     let theme_music_path: &Path = Path::new("assets/music/cool.ogg");
-    run(player_image_path, theme_music_path)?;
+    run(player_image_path, tree_image_path, theme_music_path)?;
     Ok(())
 }
