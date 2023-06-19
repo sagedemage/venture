@@ -1,7 +1,7 @@
 extern crate sdl2;
 
 use sdl2::event::Event;
-use sdl2::keyboard::{Keycode, Scancode};
+use sdl2::keyboard;
 use sdl2::pixels::Color;
 use sdl2::rect;
 use sdl2::image::{self, LoadTexture};
@@ -65,7 +65,7 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
             match event {
                 Event::Quit {..} 
                 | Event::KeyDown { 
-                    keycode: Option::Some(Keycode::Escape),
+                    keycode: Option::Some(keyboard::Keycode::Escape),
                     .. 
                 } => break 'running,
                 _ => {}
@@ -73,22 +73,22 @@ pub fn run(player_image_path: &Path, theme_music_path: &Path) -> Result<(), Stri
         }
 
         /* Hold Keybindings */
-        let event = sdl.event_pump().unwrap();
+        let event: sdl2::EventPump = sdl.event_pump().unwrap();
 
         /* Player Movement Keybindings */
-        if event.keyboard_state().is_scancode_pressed(Scancode::Right) {
+        if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Right) {
             // player moves right
             player.dstrect.x += 2;
         }
-        if event.keyboard_state().is_scancode_pressed(Scancode::Left) {
+        if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Left) {
             // player moves left
             player.dstrect.x -= 2;
         }
-        if event.keyboard_state().is_scancode_pressed(Scancode::Up) {
+        if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Up) {
             // player moves up
             player.dstrect.y -= 2;
         }
-        if event.keyboard_state().is_scancode_pressed(Scancode::Down) {
+        if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Down) {
             // player moves down
             player.dstrect.y += 2;
         }
