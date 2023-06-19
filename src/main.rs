@@ -19,6 +19,34 @@ use object::Object;
 const LEVEL_WIDTH: u32 = 750;
 const LEVEL_HEIGHT: u32 = 500;
 
+fn activate_collision(player: &mut Player<'_>, object: &Object<'_>) {
+    /* Object collision */
+    let vertex_gap: i32 = 2;
+    if player.dstrect.y < object.dstrect.y + 50 - vertex_gap && player.dstrect.y + 50 > object.dstrect.y + vertex_gap {
+        if player.dstrect.x + 50 > object.dstrect.x && player.dstrect.x < object.dstrect.x + 25 {
+            // left collision
+            player.dstrect.x = object.dstrect.x - 50; 
+        }
+        else if player.dstrect.x < object.dstrect.x + 50 && player.dstrect.x > object.dstrect.x + 25 {
+            // right collision
+            player.dstrect.x = object.dstrect.x + 50; 
+        }
+    }
+
+    else if player.dstrect.x < object.dstrect.x - vertex_gap + 50 && player.dstrect.x + 50 > object.dstrect.x + vertex_gap {
+        if player.dstrect.y + 50 > object.dstrect.y && player.dstrect.y < object.dstrect.y + 25 {
+            // top collision
+            player.dstrect.y = object.dstrect.y - 50;
+        }
+        else if player.dstrect.y < object.dstrect.y + 50 && player.dstrect.y > object.dstrect.y + 25 {
+            // bottom collision
+            player.dstrect.y = object.dstrect.y + 50;
+        }    
+    }
+    //return player.dstrect;
+
+}
+
 pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path) -> Result<(), String> {
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
@@ -102,9 +130,10 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
             player.dstrect.y += player.speed;
         }
 
-        let vertex_gap: i32 = 2;
+        //let vertex_gap: i32 = 2;
 
         /* Object collision */
+        /*
         if player.dstrect.y < tree.dstrect.y + 50 - vertex_gap && player.dstrect.y + 50 > tree.dstrect.y + vertex_gap {
             if player.dstrect.x + 50 > tree.dstrect.x && player.dstrect.x < tree.dstrect.x + 25 {
                 // left collision
@@ -126,6 +155,9 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
                 player.dstrect.y = tree.dstrect.y + 50;
             }    
         }
+        */
+
+        activate_collision(&mut player, &tree);
 
         /* Player boundaries */
         if player.dstrect.x < 0 {
