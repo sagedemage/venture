@@ -11,11 +11,8 @@ use std::time::Duration;
 use std::path::Path;
 use sdl2::mixer;
 
-mod player;
 mod object;
 mod physics;
-use player::Player;
-use object::Object;
 
 const LEVEL_WIDTH: u32 = 750;
 const LEVEL_HEIGHT: u32 = 500;
@@ -52,7 +49,7 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
     // load textures
     let texture_creator: render::TextureCreator<sdl2::video::WindowContext> = canvas.texture_creator();
 
-    let mut player: Player<'_> = Player {
+    let mut player: object::Player<'_> = object::Player {
         texture: texture_creator.load_texture(player_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
@@ -61,38 +58,38 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
 
     /* Tree Objects */
     // trees near the top of the window
-    let tree1: Object<'_> = Object {
+    let tree1: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
     };
 
-    let tree2: Object<'_> = Object {
+    let tree2: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
     };
 
-    let tree3: Object<'_> = Object {
+    let tree3: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
     };
 
     // trees near the bottom of the window
-    let tree4: Object<'_> = Object {
+    let tree4: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
     };
 
-    let tree5: Object<'_> = Object {
+    let tree5: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
     };
 
-    let tree6: Object<'_> = Object {
+    let tree6: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
