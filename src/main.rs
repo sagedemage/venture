@@ -96,6 +96,7 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
         dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
     };
 
+    /* Plays the music theme forever */
     let music: mixer::Music<'_> = mixer::Music::from_file(theme_music_path)?;
     music.play(-1)?;
 
@@ -160,7 +161,7 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
             player.dstrect.y = 0;
         }
 
-        // The rest of the game loop goes here...
+        /* Canvas renders the textures and background */
         canvas.set_draw_color(Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(&player.texture, player.srcrect, player.dstrect)?;
