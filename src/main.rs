@@ -54,7 +54,7 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
     let mut player: Player<'_> = Player {
         texture: texture_creator.load_texture(player_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(0, 0, 50, 50),
+        dstrect: rect::Rect::new(25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
         speed: 2,
     };
 
@@ -100,6 +100,20 @@ pub fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Down) {
             // player moves down
             player.dstrect.y += player.speed;
+        }
+
+        let vertex_gap: i32 = 2;
+
+        /* Object collision */
+        if player.dstrect.y < tree.dstrect.y + 50 && player.dstrect.y + 50 - vertex_gap > tree.dstrect.y + vertex_gap {
+            if player.dstrect.x + 50 > tree.dstrect.x && player.dstrect.x < tree.dstrect.x + 25 {
+                // left collision
+                player.dstrect.x = tree.dstrect.x - 50; 
+            }
+            else if player.dstrect.x < tree.dstrect.x + 50 && player.dstrect.x > tree.dstrect.x + 25 {
+                // right collision
+                player.dstrect.x = tree.dstrect.x + 50; 
+            }
         }
 
         /* Player boundaries */
