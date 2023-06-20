@@ -9,17 +9,24 @@ mod physics;
 
 const LEVEL_WIDTH: i32 = 750;
 const LEVEL_HEIGHT: i32 = 500;
+const PLAYER_IMAGE_PATH: &str = "assets/art/player.png";
+const TREE_IMAGE_PATH: &str = "assets/art/tree.png";
+const THEME_MUSIC_PATH: &str = "assets/music/cool.ogg";
 
-fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music_path: &path::Path) -> Result<(), String> {
+fn main() -> Result<(), String> {
     /* Run the Game */
+    // Variables
+    let chunksize: i32 = 1024;
+    let volume: i32 = 64; // 128 is max
+    let player_image_path: &path::Path = path::Path::new(PLAYER_IMAGE_PATH);
+    let tree_image_path: &path::Path = path::Path::new(TREE_IMAGE_PATH);
+    let theme_music_path: &path::Path = path::Path::new(THEME_MUSIC_PATH);
+
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
 
     let video_subsystem: sdl2::VideoSubsystem = sdl.video()?;
     let _image_context: image::Sdl2ImageContext = image::init(image::InitFlag::PNG)?;
-
-    let chunksize: i32 = 1024;
-    let volume: i32 = 64; // 128 is max
 
     mixer::open_audio(mixer::DEFAULT_FREQUENCY, mixer::DEFAULT_FORMAT, mixer::DEFAULT_CHANNELS, chunksize)?;
 
@@ -168,13 +175,5 @@ fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music
         std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / 60));
     }
 
-    Ok(())
-}
-
-fn main() -> Result<(), String> {
-    let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
-    let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
-    let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
-    run(player_image_path, tree_image_path, theme_music_path)?;
     Ok(())
 }
