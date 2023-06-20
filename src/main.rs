@@ -108,7 +108,7 @@ fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music
         }
 
         /* Hold Keybindings */
-        let event: sdl2::EventPump = sdl.event_pump().unwrap();
+        let event: sdl2::EventPump = sdl.event_pump()?;
 
         /* Player Movement Keybindings */
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Right) {
