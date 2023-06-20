@@ -87,7 +87,7 @@ fn main() -> Result<(), String> {
     let tree4: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
-        dstrect: rect::Rect::new(LEVEL_WIDTH * 1 / 2 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree5: object::Object<'_> = object::Object {
@@ -227,7 +227,7 @@ fn main() -> Result<(), String> {
         /* Canvas renders the textures and background */
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
-        canvas.copy(&player.get_texture(), player.get_srcrect(), player.dstrect)?;
+        canvas.copy(player.get_texture(), player.get_srcrect(), player.dstrect)?;
         canvas.copy(&tree1.texture, tree1.srcrect, tree1.dstrect)?;
         canvas.copy(&tree2.texture, tree2.srcrect, tree2.dstrect)?;
         canvas.copy(&tree3.texture, tree3.srcrect, tree3.dstrect)?;

@@ -11,24 +11,28 @@ pub struct Player<'a> {
 }
 
 impl Player<'_> {
-    pub fn new(texture: render::Texture<'_>, speed: i32, srcrect: rect::Rect, dstrect: rect::Rect) -> Player<'_> {
+    pub fn new(player_texture: render::Texture<'_>, player_speed: i32, player_srcrect: rect::Rect, player_dstrect: rect::Rect) -> Player<'_> {
+        /* Create new player */
         Player {
-            texture: texture,
-            speed: speed,
-            srcrect: srcrect,
-            dstrect: dstrect
+            texture: player_texture,
+            speed: player_speed,
+            srcrect: player_srcrect,
+            dstrect: player_dstrect
         }
     }
 
-    pub fn get_texture(&self) -> &render::Texture<'_> {
+    pub const fn get_texture(&self) -> &render::Texture<'_> {
+        /* Get player's texture */
         &self.texture
     }
 
-    pub fn get_speed(&self) -> i32 {
+    pub const fn get_speed(&self) -> i32 {
+        /* Get player's speed */
         self.speed
     }
 
-    pub fn get_srcrect(&self) -> rect::Rect {
+    pub const fn get_srcrect(&self) -> rect::Rect {
+        /* Get player's source rectangle */
         self.srcrect
     }
 }

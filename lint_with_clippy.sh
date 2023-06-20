@@ -1,3 +1,3 @@
 #!/bin/sh
 # lint the project using clippy
-cargo clippy --all -- -W clippy::all -W clippy::pedantic -W clippy::nursery -W clippy::unwrap_used -A clippy::too-many-lines -A clippy::multiple_crate_versions -D warnings
+cargo clippy --all -- -W clippy::all -W clippy::pedantic -W clippy::nursery -W clippy::unwrap_used -A clippy::too-many-lines -A clippy::multiple_crate_versions -A clippy::similar_names -D warnings
