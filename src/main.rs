@@ -7,8 +7,8 @@ use std::{time, path};
 mod object;
 mod physics;
 
-const LEVEL_WIDTH: u32 = 750;
-const LEVEL_HEIGHT: u32 = 500;
+const LEVEL_WIDTH: i32 = 750;
+const LEVEL_HEIGHT: i32 = 500;
 
 fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music_path: &path::Path) -> Result<(), String> {
     /* Run the Game */
@@ -29,7 +29,7 @@ fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music
     mixer::Music::set_volume(volume);
 
     let window: video::Window = video_subsystem
-        .window("venture", LEVEL_WIDTH, LEVEL_HEIGHT)
+        .window("venture", LEVEL_WIDTH as u32, LEVEL_HEIGHT as u32)
         .position_centered()
         .build()
         .map_err(|e| e.to_string())?;
@@ -46,7 +46,7 @@ fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music
     let mut player: object::Player<'_> = object::Player {
         texture: texture_creator.load_texture(player_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 / 2 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - 25, LEVEL_HEIGHT / 2 - 25, 50, 50),
         speed: 2,
     };
 
@@ -55,38 +55,38 @@ fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music
     let tree1: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - 25, LEVEL_HEIGHT / 4 - 25, 50, 50),
     };
 
     let tree2: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - 25, LEVEL_HEIGHT / 4 - 25, 50, 50),
     };
 
     let tree3: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 / 4 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - 25, LEVEL_HEIGHT / 4 - 25, 50, 50),
     };
 
     // trees near the bottom of the window
     let tree4: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - 25, LEVEL_HEIGHT * 3 / 4 - 25, 50, 50),
     };
 
     let tree5: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 / 2 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - 25, LEVEL_HEIGHT * 3 / 4 - 25, 50, 50),
     };
 
     let tree6: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
         srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH as i32 * 3 / 4 - 25, LEVEL_HEIGHT as i32 * 3 / 4 - 25, 50, 50),
+        dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - 25, LEVEL_HEIGHT * 3 / 4 - 25, 50, 50),
     };
 
     /* Plays the music theme forever */
@@ -141,13 +141,13 @@ fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music
             // left boundary
             player.dstrect.x = 0;
         }
-        if player.dstrect.x + player.dstrect.w > LEVEL_WIDTH as i32 {
+        if player.dstrect.x + player.dstrect.w > LEVEL_WIDTH {
             // right boundary
-            player.dstrect.x = LEVEL_WIDTH as i32 - player.dstrect.w;
+            player.dstrect.x = LEVEL_WIDTH - player.dstrect.w;
         }
-        if player.dstrect.y + player.dstrect.h > LEVEL_HEIGHT as i32 {
+        if player.dstrect.y + player.dstrect.h > LEVEL_HEIGHT {
             // bottom boundary
-            player.dstrect.y = LEVEL_HEIGHT as i32 - player.dstrect.h;
+            player.dstrect.y = LEVEL_HEIGHT - player.dstrect.h;
         }
         if player.dstrect.y < 0 {
             // top boundary
