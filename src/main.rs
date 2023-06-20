@@ -50,15 +50,19 @@ fn main() -> Result<(), String> {
         .build()
         .map_err(|e| e.to_string())?;
 
-    // load textures
+    // texture loader
     let texture_creator: render::TextureCreator<sdl2::video::WindowContext> = canvas.texture_creator();
+    let player_texture: render::Texture<'_> = texture_creator.load_texture(player_image_path)?;
 
-    let mut player: object::Player<'_> = object::Player {
-        texture: texture_creator.load_texture(player_image_path)?,
-        srcrect: rect::Rect::new(0, 0, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32),
-        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - PLAYER_WIDTH / 2, LEVEL_HEIGHT / 2 - PLAYER_HEIGHT / 2, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32),
-        speed: player_speed,
-    };
+    let player_srcrect: rect::Rect = rect::Rect::new(0, 0, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32);
+    let player_dstrect: rect::Rect =  rect::Rect::new(LEVEL_WIDTH / 4 - PLAYER_WIDTH / 2, LEVEL_HEIGHT / 2 - PLAYER_HEIGHT / 2, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32);
+
+    let mut player: object::Player<'_> = object::Player::new(
+        player_texture,
+        player_speed, 
+        player_srcrect,
+        player_dstrect,
+    );
 
     /* Tree Objects */
     // trees near the top of the window
@@ -171,19 +175,19 @@ fn main() -> Result<(), String> {
         /* Player Movement Keybindings */
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Right) {
             // player moves right
-            player.dstrect.x += player.speed;
+            player.dstrect.x += player.get_speed();
         }
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Left) {
             // player moves left
-            player.dstrect.x -= player.speed;
+            player.dstrect.x -= player.get_speed();
         }
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Up) {
             // player moves up
-            player.dstrect.y -= player.speed;
+            player.dstrect.y -= player.get_speed();
         }
         if event.keyboard_state().is_scancode_pressed(keyboard::Scancode::Down) {
             // player moves down
-            player.dstrect.y += player.speed;
+            player.dstrect.y += player.get_speed();
         }
 
         /* Object collision */
@@ -223,7 +227,7 @@ fn main() -> Result<(), String> {
         /* Canvas renders the textures and background */
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
-        canvas.copy(&player.texture, player.srcrect, player.dstrect)?;
+        canvas.copy(&player.get_texture(), player.get_srcrect(), player.dstrect)?;
         canvas.copy(&tree1.texture, tree1.srcrect, tree1.dstrect)?;
         canvas.copy(&tree2.texture, tree2.srcrect, tree2.dstrect)?;
         canvas.copy(&tree3.texture, tree3.srcrect, tree3.dstrect)?;
