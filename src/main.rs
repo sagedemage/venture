@@ -19,6 +19,7 @@ fn main() -> Result<(), String> {
     // Variables
     let chunksize: i32 = 1024;
     let volume: i32 = 64; // 128 is max
+    let fps: u32 = 60;
     let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
     let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
     let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
@@ -173,7 +174,7 @@ fn main() -> Result<(), String> {
         canvas.copy(&tree5.texture, tree5.srcrect, tree5.dstrect)?;
         canvas.copy(&tree6.texture, tree6.srcrect, tree6.dstrect)?;
         canvas.present();
-        std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / 60));
+        std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / fps));
     }
 
     Ok(())
