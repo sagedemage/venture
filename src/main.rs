@@ -9,18 +9,15 @@ mod physics;
 
 const LEVEL_WIDTH: i32 = 750;
 const LEVEL_HEIGHT: i32 = 500;
-const PLAYER_IMAGE_PATH: &str = "assets/art/player.png";
-const TREE_IMAGE_PATH: &str = "assets/art/tree.png";
-const THEME_MUSIC_PATH: &str = "assets/music/cool.ogg";
 
 fn main() -> Result<(), String> {
     /* Run the Game */
     // Variables
     let chunksize: i32 = 1024;
     let volume: i32 = 64; // 128 is max
-    let player_image_path: &path::Path = path::Path::new(PLAYER_IMAGE_PATH);
-    let tree_image_path: &path::Path = path::Path::new(TREE_IMAGE_PATH);
-    let theme_music_path: &path::Path = path::Path::new(THEME_MUSIC_PATH);
+    let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
+    let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
+    let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
 
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
