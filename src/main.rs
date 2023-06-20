@@ -9,6 +9,10 @@ mod physics;
 
 const LEVEL_WIDTH: i32 = 600;
 const LEVEL_HEIGHT: i32 = 400;
+const PLAYER_WIDTH: i32 = 50;
+const PLAYER_HEIGHT: i32 = 50;
+const TREE_WIDTH: i32 = 50;
+const TREE_HEIGHT: i32 = 50;
 
 fn main() -> Result<(), String> {
     /* Run the Game */
@@ -49,8 +53,8 @@ fn main() -> Result<(), String> {
 
     let mut player: object::Player<'_> = object::Player {
         texture: texture_creator.load_texture(player_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - 25, LEVEL_HEIGHT / 2 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - PLAYER_WIDTH / 2, LEVEL_HEIGHT / 2 - PLAYER_HEIGHT / 2, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32),
         speed: 2,
     };
 
@@ -58,39 +62,39 @@ fn main() -> Result<(), String> {
     // trees near the top of the window
     let tree1: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - 25, LEVEL_HEIGHT / 4 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree2: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - 25, LEVEL_HEIGHT / 4 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree3: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - 25, LEVEL_HEIGHT / 4 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     // trees near the bottom of the window
     let tree4: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - 25, LEVEL_HEIGHT * 3 / 4 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 4 -TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree5: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - 25, LEVEL_HEIGHT * 3 / 4 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree6: object::Object<'_> = object::Object {
         texture: texture_creator.load_texture(tree_image_path)?,
-        srcrect: rect::Rect::new(0, 0, 50, 50),
-        dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - 25, LEVEL_HEIGHT * 3 / 4 - 25, 50, 50),
+        srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
+        dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     /* Plays the music theme forever */
