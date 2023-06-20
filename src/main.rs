@@ -20,6 +20,7 @@ fn main() -> Result<(), String> {
     let chunksize: i32 = 1024;
     let volume: i32 = 64; // 128 is max
     let fps: u32 = 60;
+    let player_speed: i32 = 2;
     let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
     let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
     let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
@@ -56,7 +57,7 @@ fn main() -> Result<(), String> {
         texture: texture_creator.load_texture(player_image_path)?,
         srcrect: rect::Rect::new(0, 0, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - PLAYER_WIDTH / 2, LEVEL_HEIGHT / 2 - PLAYER_HEIGHT / 2, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32),
-        speed: 2,
+        speed: player_speed,
     };
 
     /* Tree Objects */
