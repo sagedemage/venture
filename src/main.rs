@@ -9,10 +9,10 @@ mod physics;
 
 const LEVEL_WIDTH: i32 = 600;
 const LEVEL_HEIGHT: i32 = 400;
-const PLAYER_WIDTH: i32 = 50;
-const PLAYER_HEIGHT: i32 = 50;
-const TREE_WIDTH: i32 = 50;
-const TREE_HEIGHT: i32 = 50;
+const PLAYER_WIDTH: i32 = 20;
+const PLAYER_HEIGHT: i32 = 20;
+const TREE_WIDTH: i32 = 40;
+const TREE_HEIGHT: i32 = 40;
 
 fn main() -> Result<(), String> {
     /* Run the Game */
