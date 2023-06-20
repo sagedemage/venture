@@ -7,8 +7,8 @@ use std::{time, path};
 mod object;
 mod physics;
 
-const LEVEL_WIDTH: i32 = 750;
-const LEVEL_HEIGHT: i32 = 500;
+const LEVEL_WIDTH: i32 = 600;
+const LEVEL_HEIGHT: i32 = 400;
 
 fn main() -> Result<(), String> {
     /* Run the Game */
