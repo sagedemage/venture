@@ -1,15 +1,8 @@
 extern crate sdl2;
 
-use sdl2::event::Event;
-use sdl2::keyboard;
-use sdl2::pixels::Color;
-use sdl2::rect;
+use sdl2::{event, keyboard, pixels, rect, render, video, mixer};
 use sdl2::image::{self, LoadTexture};
-use sdl2::render;
-use sdl2::video;
-use std::time::Duration;
-use std::path::Path;
-use sdl2::mixer;
+use std::{time, path};
 
 mod object;
 mod physics;
@@ -17,7 +10,7 @@ mod physics;
 const LEVEL_WIDTH: u32 = 750;
 const LEVEL_HEIGHT: u32 = 500;
 
-fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path) -> Result<(), String> {
+fn run(player_image_path: &path::Path, tree_image_path: &path::Path, theme_music_path: &path::Path) -> Result<(), String> {
     /* Run the Game */
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
@@ -105,8 +98,8 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
         /* Click Keybindings */
         for event in sdl.event_pump()?.poll_iter() {
             match event {
-                Event::Quit {..} 
-                | Event::KeyDown { 
+                event::Event::Quit {..} 
+                | event::Event::KeyDown { 
                     keycode: Option::Some(keyboard::Keycode::Escape),
                     .. 
                 } => break 'running,
@@ -162,7 +155,7 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
         }
 
         /* Canvas renders the textures and background */
-        canvas.set_draw_color(Color::RGB(134, 191, 255));
+        canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(&player.texture, player.srcrect, player.dstrect)?;
         canvas.copy(&tree1.texture, tree1.srcrect, tree1.dstrect)?;
@@ -172,16 +165,16 @@ fn run(player_image_path: &Path, tree_image_path: &Path, theme_music_path: &Path
         canvas.copy(&tree5.texture, tree5.srcrect, tree5.dstrect)?;
         canvas.copy(&tree6.texture, tree6.srcrect, tree6.dstrect)?;
         canvas.present();
-        std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
+        std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / 60));
     }
 
     Ok(())
 }
 
 fn main() -> Result<(), String> {
-    let player_image_path: &Path = Path::new("assets/art/player.png");
-    let tree_image_path: &Path = Path::new("assets/art/tree.png");
-    let theme_music_path: &Path = Path::new("assets/music/cool.ogg");
+    let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
+    let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
+    let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
     run(player_image_path, tree_image_path, theme_music_path)?;
     Ok(())
 }

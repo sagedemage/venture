@@ -1,7 +1,6 @@
 /* Game objects and their structures */
 
-use sdl2::render;
-use sdl2::rect;
+use sdl2::{render, rect};
 
 pub struct Player<'a> {
     /* Player Object */
