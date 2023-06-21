@@ -39,7 +39,7 @@ impl Player<'_> {
 
 pub struct Object<'a> {
     /* Generic Object */
-    pub texture: render::Texture<'a>,
+    pub texture: &'a render::Texture<'a>,
     pub srcrect: rect::Rect,
     pub dstrect: rect::Rect,
 }

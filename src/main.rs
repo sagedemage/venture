@@ -66,87 +66,90 @@ fn main() -> Result<(), String> {
 
     /* Tree Objects */
     // trees near the top of the window
+
+    let tree_texture: render::Texture<'_> = texture_creator.load_texture(tree_image_path)?;
+
     let tree1: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree2: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree3: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree4: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree5: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 5 / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree6: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree7: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 7 / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     // trees near the bottom of the window
     let tree8: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 8 -TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree9: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree10: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree11: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH / 2 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree12: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 5 / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree13: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 3 / 4 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
 
     let tree14: object::Object<'_> = object::Object {
-        texture: texture_creator.load_texture(tree_image_path)?,
+        texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
         dstrect: rect::Rect::new(LEVEL_WIDTH * 7 / 8 - TREE_WIDTH / 2, LEVEL_HEIGHT * 3 / 4 - TREE_HEIGHT / 2, TREE_WIDTH as u32, TREE_HEIGHT as u32),
     };
@@ -228,20 +231,20 @@ fn main() -> Result<(), String> {
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(player.get_texture(), player.get_srcrect(), player.dstrect)?;
-        canvas.copy(&tree1.texture, tree1.srcrect, tree1.dstrect)?;
-        canvas.copy(&tree2.texture, tree2.srcrect, tree2.dstrect)?;
-        canvas.copy(&tree3.texture, tree3.srcrect, tree3.dstrect)?;
-        canvas.copy(&tree4.texture, tree4.srcrect, tree4.dstrect)?;
-        canvas.copy(&tree5.texture, tree5.srcrect, tree5.dstrect)?;
-        canvas.copy(&tree6.texture, tree6.srcrect, tree6.dstrect)?;
-        canvas.copy(&tree7.texture, tree7.srcrect, tree7.dstrect)?;
-        canvas.copy(&tree8.texture, tree8.srcrect, tree8.dstrect)?;
-        canvas.copy(&tree9.texture, tree9.srcrect, tree9.dstrect)?;
-        canvas.copy(&tree10.texture, tree10.srcrect, tree10.dstrect)?;
-        canvas.copy(&tree11.texture, tree11.srcrect, tree11.dstrect)?;
-        canvas.copy(&tree12.texture, tree12.srcrect, tree12.dstrect)?;
-        canvas.copy(&tree13.texture, tree13.srcrect, tree13.dstrect)?;
-        canvas.copy(&tree14.texture, tree14.srcrect, tree14.dstrect)?;
+        canvas.copy(tree1.texture, tree1.srcrect, tree1.dstrect)?;
+        canvas.copy(tree2.texture, tree2.srcrect, tree2.dstrect)?;
+        canvas.copy(tree3.texture, tree3.srcrect, tree3.dstrect)?;
+        canvas.copy(tree4.texture, tree4.srcrect, tree4.dstrect)?;
+        canvas.copy(tree5.texture, tree5.srcrect, tree5.dstrect)?;
+        canvas.copy(tree6.texture, tree6.srcrect, tree6.dstrect)?;
+        canvas.copy(tree7.texture, tree7.srcrect, tree7.dstrect)?;
+        canvas.copy(tree8.texture, tree8.srcrect, tree8.dstrect)?;
+        canvas.copy(tree9.texture, tree9.srcrect, tree9.dstrect)?;
+        canvas.copy(tree10.texture, tree10.srcrect, tree10.dstrect)?;
+        canvas.copy(tree11.texture, tree11.srcrect, tree11.dstrect)?;
+        canvas.copy(tree12.texture, tree12.srcrect, tree12.dstrect)?;
+        canvas.copy(tree13.texture, tree13.srcrect, tree13.dstrect)?;
+        canvas.copy(tree14.texture, tree14.srcrect, tree14.dstrect)?;
         canvas.present();
         std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / fps));
     }
