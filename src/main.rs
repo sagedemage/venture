@@ -58,7 +58,7 @@ fn main() -> Result<(), String> {
     let player_dstrect: rect::Rect =  rect::Rect::new(LEVEL_WIDTH / 4 - PLAYER_WIDTH / 2, LEVEL_HEIGHT / 2 - PLAYER_HEIGHT / 2, PLAYER_WIDTH as u32, PLAYER_HEIGHT as u32);
 
     let mut player: object::Player<'_> = object::Player::new(
-        player_texture,
+        &player_texture,
         player_speed, 
         player_srcrect,
         player_dstrect,
