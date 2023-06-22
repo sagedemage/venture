@@ -11,13 +11,13 @@ pub struct Player<'a> {
 }
 
 impl<'a> Player<'a> {
-    pub const fn new(player_texture: &'a render::Texture<'a>, player_speed: i32, player_srcrect: rect::Rect, player_dstrect: rect::Rect) -> Player<'a> {
+    pub const fn new(texture: &'a render::Texture<'a>, speed: i32, srcrect: rect::Rect, dstrect: rect::Rect) -> Player<'a> {
         /* Create new player */
         Player {
-            texture: player_texture,
-            speed: player_speed,
-            srcrect: player_srcrect,
-            dstrect: player_dstrect
+            texture, 
+            speed,
+            srcrect,
+            dstrect
         }
     }
 
