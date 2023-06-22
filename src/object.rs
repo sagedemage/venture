@@ -1,17 +1,18 @@
 /* Game objects and their structures */
 
-use sdl2::{render, rect};
+use sdl2::render::Texture;
+use sdl2::rect::Rect;
 
 pub struct Player<'a> {
     /* Player Object */
-    texture: &'a render::Texture<'a>,
+    texture: &'a Texture<'a>,
     speed: i32,
-    srcrect: rect::Rect,
-    pub dstrect: rect::Rect,
+    srcrect: Rect,
+    pub dstrect: Rect,
 }
 
 impl<'a> Player<'a> {
-    pub const fn new(texture: &'a render::Texture<'a>, speed: i32, srcrect: rect::Rect, dstrect: rect::Rect) -> Player<'a> {
+    pub const fn new(texture: &'a Texture<'a>, speed: i32, srcrect: Rect, dstrect: Rect) -> Player<'a> {
         /* Create new player */
         Player {
             texture, 
@@ -21,7 +22,7 @@ impl<'a> Player<'a> {
         }
     }
 
-    pub const fn get_texture(&self) -> &render::Texture<'a> {
+    pub const fn get_texture(&self) -> &Texture<'a> {
         /* Get player's texture */
         self.texture
     }
@@ -31,7 +32,7 @@ impl<'a> Player<'a> {
         self.speed
     }
 
-    pub const fn get_srcrect(&self) -> rect::Rect {
+    pub const fn get_srcrect(&self) -> Rect {
         /* Get player's source rectangle */
         self.srcrect
     }
@@ -39,7 +40,7 @@ impl<'a> Player<'a> {
 
 pub struct Object<'a> {
     /* Generic Object */
-    pub texture: &'a render::Texture<'a>,
-    pub srcrect: rect::Rect,
-    pub dstrect: rect::Rect,
+    pub texture: &'a Texture<'a>,
+    pub srcrect: Rect,
+    pub dstrect: Rect,
 }
