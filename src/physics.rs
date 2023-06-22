@@ -20,7 +20,7 @@ pub fn activate_collision(player: &mut object::Player<'_>, object: &object::Obje
         }
         else if player.dstrect.x < object_right_side && player.dstrect.x > object.dstrect.x + object.srcrect.w / 2 {
             // right collision
-            player.dstrect.x = object_right_side; 
+            player.dstrect.x = object_right_side;
         }
     }
 
