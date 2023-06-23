@@ -9,3 +9,9 @@ edition = "2021"
 version = "0.35.2"
 default-features = false
 features = ["image", "mixer"]
+
+[profile.release]
+opt-level = 3 
+debug = false
+lto = true
+strip = true
