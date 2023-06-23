@@ -65,10 +65,9 @@ fn main() -> Result<(), String> {
     );
 
     /* Tree Objects */
-    // trees near the top of the window
-
     let tree_texture: render::Texture<'_> = texture_creator.load_texture(tree_image_path)?;
 
+    // trees near the top of the window
     let tree1: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH as u32, TREE_HEIGHT as u32),
