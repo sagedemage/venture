@@ -16,6 +16,7 @@ pub fn activate_collision(player: &mut object::Player<'_>, object: &object::Obje
     if player.dstrect.y < object_bottom_side - vertex_gap
         && player_bottom_side > object.dstrect.y + vertex_gap
     {
+        /* The player is between the object's top and bottom side */
         if player_right_side > object.dstrect.x
             && player.dstrect.x < object.dstrect.x + object.srcrect.w / 2
         {
@@ -30,6 +31,7 @@ pub fn activate_collision(player: &mut object::Player<'_>, object: &object::Obje
     } else if player.dstrect.x < object.dstrect.x - vertex_gap + object.srcrect.w
         && player_right_side > object.dstrect.x + vertex_gap
     {
+        /* The player is between the object's right and left side */
         if player_bottom_side > object.dstrect.y
             && player.dstrect.y < object.dstrect.y + object.srcrect.h / 2
         {
