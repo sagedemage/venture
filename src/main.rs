@@ -56,9 +56,11 @@ fn main() -> Result<(), String> {
         .build()
         .map_err(|e| e.to_string())?;
 
+    /* Set the renderer to use hardware acceleration.
+     * This improves the game's performance (FPS) */
     let mut canvas: render::Canvas<video::Window> = window
         .into_canvas()
-        .software()
+        .accelerated()
         .build()
         .map_err(|e| e.to_string())?;
 
