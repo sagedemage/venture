@@ -1,7 +1,7 @@
 /* Game objects and their structures */
 
-use sdl2::render::Texture;
 use sdl2::rect::Rect;
+use sdl2::render::Texture;
 
 pub struct Player<'a> {
     /* Player Object */
@@ -12,13 +12,18 @@ pub struct Player<'a> {
 }
 
 impl<'a> Player<'a> {
-    pub const fn new(texture: &'a Texture<'a>, speed: i32, srcrect: Rect, dstrect: Rect) -> Player<'a> {
+    pub const fn new(
+        texture: &'a Texture<'a>,
+        speed: i32,
+        srcrect: Rect,
+        dstrect: Rect,
+    ) -> Player<'a> {
         /* Create new player */
         Player {
-            texture, 
+            texture,
             speed,
             srcrect,
-            dstrect
+            dstrect,
         }
     }
 
