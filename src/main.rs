@@ -88,7 +88,7 @@ fn main() -> Result<(), String> {
     let tree_texture: render::Texture<'_> = texture_creator.load_texture(tree_image_path)?;
 
     // trees near the top of the window
-    let tree1: object::Object<'_> = object::Object {
+    let first_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -99,7 +99,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree2: object::Object<'_> = object::Object {
+    let second_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -110,7 +110,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree3: object::Object<'_> = object::Object {
+    let third_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -121,7 +121,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree4: object::Object<'_> = object::Object {
+    let fourth_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -132,7 +132,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree5: object::Object<'_> = object::Object {
+    let fifth_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -143,7 +143,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree6: object::Object<'_> = object::Object {
+    let sixth_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -154,7 +154,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree7: object::Object<'_> = object::Object {
+    let seventh_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -166,7 +166,7 @@ fn main() -> Result<(), String> {
     };
 
     // trees near the bottom of the window
-    let tree8: object::Object<'_> = object::Object {
+    let first_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -177,7 +177,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree9: object::Object<'_> = object::Object {
+    let second_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -188,7 +188,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree10: object::Object<'_> = object::Object {
+    let third_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -199,7 +199,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree11: object::Object<'_> = object::Object {
+    let fourth_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -210,7 +210,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree12: object::Object<'_> = object::Object {
+    let fifth_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -221,7 +221,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree13: object::Object<'_> = object::Object {
+    let sixth_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -232,7 +232,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree14: object::Object<'_> = object::Object {
+    let seventh_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -242,6 +242,23 @@ fn main() -> Result<(), String> {
             TREE_HEIGHT,
         ),
     };
+
+    let trees: Vec<object::Object> = vec![
+        first_top_tree,
+        second_top_tree,
+        third_top_tree,
+        fourth_top_tree,
+        fifth_top_tree,
+        sixth_top_tree,
+        seventh_top_tree,
+        first_bottom_tree,
+        second_bottom_tree,
+        third_bottom_tree,
+        fourth_bottom_tree,
+        fifth_bottom_tree,
+        sixth_bottom_tree,
+        seventh_bottom_tree,
+    ];
 
     /* Plays the music theme forever */
     let music: mixer::Music<'_> = mixer::Music::from_file(theme_music_path)?;
@@ -295,20 +312,20 @@ fn main() -> Result<(), String> {
         }
 
         /* Object collision */
-        physics::activate_collision(&mut player, &tree1);
-        physics::activate_collision(&mut player, &tree2);
-        physics::activate_collision(&mut player, &tree3);
-        physics::activate_collision(&mut player, &tree4);
-        physics::activate_collision(&mut player, &tree5);
-        physics::activate_collision(&mut player, &tree6);
-        physics::activate_collision(&mut player, &tree7);
-        physics::activate_collision(&mut player, &tree8);
-        physics::activate_collision(&mut player, &tree9);
-        physics::activate_collision(&mut player, &tree10);
-        physics::activate_collision(&mut player, &tree11);
-        physics::activate_collision(&mut player, &tree12);
-        physics::activate_collision(&mut player, &tree13);
-        physics::activate_collision(&mut player, &tree14);
+        physics::activate_collision(&mut player, &trees[0]);
+        physics::activate_collision(&mut player, &trees[1]);
+        physics::activate_collision(&mut player, &trees[2]);
+        physics::activate_collision(&mut player, &trees[3]);
+        physics::activate_collision(&mut player, &trees[4]);
+        physics::activate_collision(&mut player, &trees[5]);
+        physics::activate_collision(&mut player, &trees[6]);
+        physics::activate_collision(&mut player, &trees[7]);
+        physics::activate_collision(&mut player, &trees[8]);
+        physics::activate_collision(&mut player, &trees[9]);
+        physics::activate_collision(&mut player, &trees[10]);
+        physics::activate_collision(&mut player, &trees[11]);
+        physics::activate_collision(&mut player, &trees[12]);
+        physics::activate_collision(&mut player, &trees[13]);
 
         /* Player boundaries */
         if player.dstrect.x < 0 {
@@ -332,20 +349,20 @@ fn main() -> Result<(), String> {
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(player.get_texture(), player.get_srcrect(), player.dstrect)?;
-        canvas.copy(tree1.texture, tree1.srcrect, tree1.dstrect)?;
-        canvas.copy(tree2.texture, tree2.srcrect, tree2.dstrect)?;
-        canvas.copy(tree3.texture, tree3.srcrect, tree3.dstrect)?;
-        canvas.copy(tree4.texture, tree4.srcrect, tree4.dstrect)?;
-        canvas.copy(tree5.texture, tree5.srcrect, tree5.dstrect)?;
-        canvas.copy(tree6.texture, tree6.srcrect, tree6.dstrect)?;
-        canvas.copy(tree7.texture, tree7.srcrect, tree7.dstrect)?;
-        canvas.copy(tree8.texture, tree8.srcrect, tree8.dstrect)?;
-        canvas.copy(tree9.texture, tree9.srcrect, tree9.dstrect)?;
-        canvas.copy(tree10.texture, tree10.srcrect, tree10.dstrect)?;
-        canvas.copy(tree11.texture, tree11.srcrect, tree11.dstrect)?;
-        canvas.copy(tree12.texture, tree12.srcrect, tree12.dstrect)?;
-        canvas.copy(tree13.texture, tree13.srcrect, tree13.dstrect)?;
-        canvas.copy(tree14.texture, tree14.srcrect, tree14.dstrect)?;
+        canvas.copy(trees[0].texture, trees[0].srcrect, trees[0].dstrect)?;
+        canvas.copy(trees[1].texture, trees[1].srcrect, trees[1].dstrect)?;
+        canvas.copy(trees[2].texture, trees[2].srcrect, trees[2].dstrect)?;
+        canvas.copy(trees[3].texture, trees[3].srcrect, trees[3].dstrect)?;
+        canvas.copy(trees[4].texture, trees[4].srcrect, trees[4].dstrect)?;
+        canvas.copy(trees[5].texture, trees[5].srcrect, trees[5].dstrect)?;
+        canvas.copy(trees[6].texture, trees[6].srcrect, trees[6].dstrect)?;
+        canvas.copy(trees[7].texture, trees[7].srcrect, trees[7].dstrect)?;
+        canvas.copy(trees[8].texture, trees[8].srcrect, trees[8].dstrect)?;
+        canvas.copy(trees[9].texture, trees[9].srcrect, trees[9].dstrect)?;
+        canvas.copy(trees[10].texture, trees[10].srcrect, trees[10].dstrect)?;
+        canvas.copy(trees[11].texture, trees[11].srcrect, trees[11].dstrect)?;
+        canvas.copy(trees[12].texture, trees[12].srcrect, trees[12].dstrect)?;
+        canvas.copy(trees[13].texture, trees[13].srcrect, trees[13].dstrect)?;
         canvas.present();
         std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / fps));
     }
