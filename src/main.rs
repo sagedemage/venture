@@ -243,6 +243,11 @@ fn main() -> Result<(), String> {
         ),
     };
 
+    let trees: Vec<object::Object> = vec![
+        tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12,
+        tree13, tree14,
+    ];
+
     /* Plays the music theme forever */
     let music: mixer::Music<'_> = mixer::Music::from_file(theme_music_path)?;
     music.play(-1)?;
@@ -295,20 +300,20 @@ fn main() -> Result<(), String> {
         }
 
         /* Object collision */
-        physics::activate_collision(&mut player, &tree1);
-        physics::activate_collision(&mut player, &tree2);
-        physics::activate_collision(&mut player, &tree3);
-        physics::activate_collision(&mut player, &tree4);
-        physics::activate_collision(&mut player, &tree5);
-        physics::activate_collision(&mut player, &tree6);
-        physics::activate_collision(&mut player, &tree7);
-        physics::activate_collision(&mut player, &tree8);
-        physics::activate_collision(&mut player, &tree9);
-        physics::activate_collision(&mut player, &tree10);
-        physics::activate_collision(&mut player, &tree11);
-        physics::activate_collision(&mut player, &tree12);
-        physics::activate_collision(&mut player, &tree13);
-        physics::activate_collision(&mut player, &tree14);
+        physics::activate_collision(&mut player, &trees[0]);
+        physics::activate_collision(&mut player, &trees[1]);
+        physics::activate_collision(&mut player, &trees[2]);
+        physics::activate_collision(&mut player, &trees[3]);
+        physics::activate_collision(&mut player, &trees[4]);
+        physics::activate_collision(&mut player, &trees[5]);
+        physics::activate_collision(&mut player, &trees[6]);
+        physics::activate_collision(&mut player, &trees[7]);
+        physics::activate_collision(&mut player, &trees[8]);
+        physics::activate_collision(&mut player, &trees[9]);
+        physics::activate_collision(&mut player, &trees[10]);
+        physics::activate_collision(&mut player, &trees[11]);
+        physics::activate_collision(&mut player, &trees[12]);
+        physics::activate_collision(&mut player, &trees[13]);
 
         /* Player boundaries */
         if player.dstrect.x < 0 {
@@ -332,20 +337,20 @@ fn main() -> Result<(), String> {
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
         canvas.copy(player.get_texture(), player.get_srcrect(), player.dstrect)?;
-        canvas.copy(tree1.texture, tree1.srcrect, tree1.dstrect)?;
-        canvas.copy(tree2.texture, tree2.srcrect, tree2.dstrect)?;
-        canvas.copy(tree3.texture, tree3.srcrect, tree3.dstrect)?;
-        canvas.copy(tree4.texture, tree4.srcrect, tree4.dstrect)?;
-        canvas.copy(tree5.texture, tree5.srcrect, tree5.dstrect)?;
-        canvas.copy(tree6.texture, tree6.srcrect, tree6.dstrect)?;
-        canvas.copy(tree7.texture, tree7.srcrect, tree7.dstrect)?;
-        canvas.copy(tree8.texture, tree8.srcrect, tree8.dstrect)?;
-        canvas.copy(tree9.texture, tree9.srcrect, tree9.dstrect)?;
-        canvas.copy(tree10.texture, tree10.srcrect, tree10.dstrect)?;
-        canvas.copy(tree11.texture, tree11.srcrect, tree11.dstrect)?;
-        canvas.copy(tree12.texture, tree12.srcrect, tree12.dstrect)?;
-        canvas.copy(tree13.texture, tree13.srcrect, tree13.dstrect)?;
-        canvas.copy(tree14.texture, tree14.srcrect, tree14.dstrect)?;
+        canvas.copy(trees[0].texture, trees[0].srcrect, trees[0].dstrect)?;
+        canvas.copy(trees[1].texture, trees[1].srcrect, trees[1].dstrect)?;
+        canvas.copy(trees[2].texture, trees[2].srcrect, trees[2].dstrect)?;
+        canvas.copy(trees[3].texture, trees[3].srcrect, trees[3].dstrect)?;
+        canvas.copy(trees[4].texture, trees[4].srcrect, trees[4].dstrect)?;
+        canvas.copy(trees[5].texture, trees[5].srcrect, trees[5].dstrect)?;
+        canvas.copy(trees[6].texture, trees[6].srcrect, trees[6].dstrect)?;
+        canvas.copy(trees[7].texture, trees[7].srcrect, trees[7].dstrect)?;
+        canvas.copy(trees[8].texture, trees[8].srcrect, trees[8].dstrect)?;
+        canvas.copy(trees[9].texture, trees[9].srcrect, trees[9].dstrect)?;
+        canvas.copy(trees[10].texture, trees[10].srcrect, trees[10].dstrect)?;
+        canvas.copy(trees[11].texture, trees[11].srcrect, trees[11].dstrect)?;
+        canvas.copy(trees[12].texture, trees[12].srcrect, trees[12].dstrect)?;
+        canvas.copy(trees[13].texture, trees[13].srcrect, trees[13].dstrect)?;
         canvas.present();
         std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / fps));
     }
