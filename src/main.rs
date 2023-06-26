@@ -88,7 +88,7 @@ fn main() -> Result<(), String> {
     let tree_texture: render::Texture<'_> = texture_creator.load_texture(tree_image_path)?;
 
     // trees near the top of the window
-    let tree1: object::Object<'_> = object::Object {
+    let first_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -99,7 +99,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree2: object::Object<'_> = object::Object {
+    let second_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -110,7 +110,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree3: object::Object<'_> = object::Object {
+    let third_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -121,7 +121,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree4: object::Object<'_> = object::Object {
+    let fourth_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -132,7 +132,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree5: object::Object<'_> = object::Object {
+    let fifth_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -143,7 +143,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree6: object::Object<'_> = object::Object {
+    let sixth_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -154,7 +154,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree7: object::Object<'_> = object::Object {
+    let seventh_top_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -166,7 +166,7 @@ fn main() -> Result<(), String> {
     };
 
     // trees near the bottom of the window
-    let tree8: object::Object<'_> = object::Object {
+    let first_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -177,7 +177,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree9: object::Object<'_> = object::Object {
+    let second_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -188,7 +188,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree10: object::Object<'_> = object::Object {
+    let third_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -199,7 +199,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree11: object::Object<'_> = object::Object {
+    let fourth_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -210,7 +210,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree12: object::Object<'_> = object::Object {
+    let fifth_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -221,7 +221,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree13: object::Object<'_> = object::Object {
+    let sixth_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -232,7 +232,7 @@ fn main() -> Result<(), String> {
         ),
     };
 
-    let tree14: object::Object<'_> = object::Object {
+    let seventh_bottom_tree: object::Object<'_> = object::Object {
         texture: &tree_texture,
         srcrect: rect::Rect::new(0, 0, TREE_WIDTH, TREE_HEIGHT),
         dstrect: rect::Rect::new(
@@ -244,8 +244,20 @@ fn main() -> Result<(), String> {
     };
 
     let trees: Vec<object::Object> = vec![
-        tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12,
-        tree13, tree14,
+        first_top_tree,
+        second_top_tree,
+        third_top_tree,
+        fourth_top_tree,
+        fifth_top_tree,
+        sixth_top_tree,
+        seventh_top_tree,
+        first_bottom_tree,
+        second_bottom_tree,
+        third_bottom_tree,
+        fourth_bottom_tree,
+        fifth_bottom_tree,
+        sixth_bottom_tree,
+        seventh_bottom_tree,
     ];
 
     /* Plays the music theme forever */
