@@ -77,7 +77,7 @@ fn main() -> Result<(), String> {
     font.set_style(ttf::FontStyle::BOLD);
 
     let message_surface = font
-        .render("Hello Rust")
+        .render("Venture")
         .blended(pixels::Color::RGB(60, 60, 60))
         .map_err(|e| e.to_string())?;
 
