@@ -1,7 +1,7 @@
 extern crate sdl2;
 
 use sdl2::image::LoadTexture;
-use sdl2::{event, image, keyboard, mixer, pixels, rect, render, video};
+use sdl2::{event, image, keyboard, mixer, pixels, rect, render, ttf, video};
 use std::{path, time};
 
 mod object;
@@ -31,6 +31,7 @@ fn main() -> Result<(), String> {
     let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
     let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
     let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
+    let font_path = path::Path::new("/usr/share/fonts/truetype/freefont");
 
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
@@ -67,8 +68,27 @@ fn main() -> Result<(), String> {
     // texture loader
     let texture_creator: render::TextureCreator<sdl2::video::WindowContext> =
         canvas.texture_creator();
-    let player_texture: render::Texture<'_> = texture_creator.load_texture(player_image_path)?;
 
+    // ttf loader
+    let ttf_context = ttf::init().map_err(|e| e.to_string())?;
+
+    /* Font Message */
+    let mut font = ttf_context.load_font(font_path, 128)?;
+    font.set_style(ttf::FontStyle::BOLD);
+
+    let message_surface = font
+        .render("Hello Rust")
+        .blended(pixels::Color::RGBA(255, 0, 0, 255))
+        .map_err(|e| e.to_string())?;
+
+    let message_texture = texture_creator
+        .create_texture_from_surface(&message_surface)
+        .map_err(|e| e.to_string())?;
+
+    let messege_target = rect::Rect::new(10, 10, 10, 10);
+
+    /* Player */
+    let player_texture: render::Texture<'_> = texture_creator.load_texture(player_image_path)?;
     let player_srcrect: rect::Rect = rect::Rect::new(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT);
     let player_dstrect: rect::Rect = rect::Rect::new(
         level_width / 4 - player_width / 2,
@@ -363,6 +383,7 @@ fn main() -> Result<(), String> {
         canvas.copy(trees[11].texture, trees[11].srcrect, trees[11].dstrect)?;
         canvas.copy(trees[12].texture, trees[12].srcrect, trees[12].dstrect)?;
         canvas.copy(trees[13].texture, trees[13].srcrect, trees[13].dstrect)?;
+        canvas.copy(&message_texture, None, Some(messege_target))?;
         canvas.present();
         std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / fps));
     }
