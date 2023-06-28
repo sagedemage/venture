@@ -31,7 +31,7 @@ fn main() -> Result<(), String> {
     let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
     let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
     let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
-    let font_path = path::Path::new("/usr/share/fonts/truetype/freefont");
+    let font_path = path::Path::new("/usr/share/fonts/truetype/freefont/FreeSans.ttf");
 
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
