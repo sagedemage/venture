@@ -7,18 +7,25 @@ use std::{path, time};
 mod object;
 mod physics;
 
+// Dimensions of the level
 const LEVEL_WIDTH: u32 = 1280;
 const LEVEL_HEIGHT: u32 = 720;
+
+// Dimensions of the player
 const PLAYER_WIDTH: u32 = 20;
 const PLAYER_HEIGHT: u32 = 20;
+
+// Dimensions of the tree
 const TREE_WIDTH: u32 = 40;
 const TREE_HEIGHT: u32 = 40;
+
+// Dimensions of the title
 const TITLE_WIDTH: u32 = 90;
 const TITLE_HEIGHT: u32 = 30;
 
 fn main() -> Result<(), String> {
     /* Run the Game */
-    // Variables
+    // Dimensions of the level, player, and tree as 32 bit integer data type
     let level_width: i32 = LEVEL_WIDTH as i32;
     let level_height: i32 = LEVEL_HEIGHT as i32;
     let player_width: i32 = PLAYER_WIDTH as i32;
@@ -26,21 +33,37 @@ fn main() -> Result<(), String> {
     let tree_width: i32 = TREE_WIDTH as i32;
     let tree_height: i32 = TREE_HEIGHT as i32;
 
+    // Volume properties
     let chunksize: i32 = 1024;
     let volume: i32 = 64; // 128 is max
+
+    // Frames per second of the game
     let fps: u32 = 60;
+
+    // The speed of the player
     let player_speed: i32 = 2;
+
+    // Image file paths
     let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
     let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
     let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
+
+    // Font file path
     let font_path: &path::Path = path::Path::new("fonts/OpenSans-VariableFont_wdth,wght.ttf");
 
+    // Initializes the SDL library
     let sdl: sdl2::Sdl = sdl2::init()?;
+
+    // Initializes the audio subsystem
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
 
+    // Initializes the video subsystem
     let video_subsystem: sdl2::VideoSubsystem = sdl.video()?;
+
+    // Initializes the SDL2 image with the support for PNG files
     let _image_context: image::Sdl2ImageContext = image::init(image::InitFlag::PNG)?;
 
+    // Open the mixer with a certain audio format
     mixer::open_audio(
         mixer::DEFAULT_FREQUENCY,
         mixer::DEFAULT_FORMAT,
@@ -48,19 +71,21 @@ fn main() -> Result<(), String> {
         chunksize,
     )?;
 
+    // Initializes the SDL2 mixer with the support for OGG files
     let _mixer_contennt: mixer::Sdl2MixerContext = mixer::init(mixer::InitFlag::OGG)?;
 
     mixer::allocate_channels(4);
     mixer::Music::set_volume(volume);
 
+    // Initializes a Window
     let window: video::Window = video_subsystem
         .window("venture", LEVEL_WIDTH, LEVEL_HEIGHT)
         .position_centered()
         .build()
         .map_err(|e| e.to_string())?;
 
-    /* Set the renderer to use hardware acceleration.
-     * This improves the game's performance (FPS) */
+    // Set the renderer to use hardware acceleration
+    // This improves the game's performance (FPS)
     let mut canvas: render::Canvas<video::Window> = window
         .into_canvas()
         .accelerated()
@@ -74,7 +99,7 @@ fn main() -> Result<(), String> {
     // ttf loader
     let ttf_context = ttf::init().map_err(|e| e.to_string())?;
 
-    /* Font Message */
+    /* Title text */
     let mut font = ttf_context.load_font(font_path, 128)?;
     font.set_style(ttf::FontStyle::BOLD);
 
@@ -373,8 +398,14 @@ fn main() -> Result<(), String> {
         /* Canvas renders the textures and background */
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
+
+        // Render the title texture
         canvas.copy(title.texture, None, title.dstrect)?;
+
+        // Render the player texture
         canvas.copy(player.get_texture(), player.get_srcrect(), player.dstrect)?;
+
+        // Render the tree textures
         canvas.copy(trees[0].texture, trees[0].srcrect, trees[0].dstrect)?;
         canvas.copy(trees[1].texture, trees[1].srcrect, trees[1].dstrect)?;
         canvas.copy(trees[2].texture, trees[2].srcrect, trees[2].dstrect)?;
@@ -390,6 +421,8 @@ fn main() -> Result<(), String> {
         canvas.copy(trees[12].texture, trees[12].srcrect, trees[12].dstrect)?;
         canvas.copy(trees[13].texture, trees[13].srcrect, trees[13].dstrect)?;
         canvas.present();
+
+        // Set the frames per second to 60
         std::thread::sleep(time::Duration::new(0, 1_000_000_000u32 / fps));
     }
 
