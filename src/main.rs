@@ -31,7 +31,7 @@ fn main() -> Result<(), String> {
     let player_image_path: &path::Path = path::Path::new("assets/art/player.png");
     let tree_image_path: &path::Path = path::Path::new("assets/art/tree.png");
     let theme_music_path: &path::Path = path::Path::new("assets/music/cool.ogg");
-    let font_path = path::Path::new("/usr/share/fonts/truetype/freefont/FreeSans.ttf");
+    let font_path: &path::Path = path::Path::new("fonts/OpenSans-VariableFont_wdth,wght.ttf");
 
     let sdl: sdl2::Sdl = sdl2::init()?;
     let _audio: sdl2::AudioSubsystem = sdl.audio()?;
@@ -87,7 +87,7 @@ fn main() -> Result<(), String> {
 
     let title = object::Text {
         texture: &title_texture,
-        dstrect: rect::Rect::new(0, 0, 80, 20),
+        dstrect: rect::Rect::new(0, 0, 90, 30),
     };
 
     /* Player */
