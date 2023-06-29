@@ -76,16 +76,19 @@ fn main() -> Result<(), String> {
     let mut font = ttf_context.load_font(font_path, 128)?;
     font.set_style(ttf::FontStyle::BOLD);
 
-    let message_surface = font
+    let title_surface = font
         .render("Venture")
         .blended(pixels::Color::RGB(60, 60, 60))
         .map_err(|e| e.to_string())?;
 
-    let message_texture = texture_creator
-        .create_texture_from_surface(&message_surface)
+    let title_texture = texture_creator
+        .create_texture_from_surface(&title_surface)
         .map_err(|e| e.to_string())?;
 
-    let messege_target = rect::Rect::new(0, 0, 80, 20);
+    let title = object::Text {
+        texture: &title_texture,
+        dstrect: rect::Rect::new(0, 0, 80, 20),
+    };
 
     /* Player */
     let player_texture: render::Texture<'_> = texture_creator.load_texture(player_image_path)?;
@@ -368,7 +371,7 @@ fn main() -> Result<(), String> {
         /* Canvas renders the textures and background */
         canvas.set_draw_color(pixels::Color::RGB(134, 191, 255));
         canvas.clear();
-        canvas.copy(&message_texture, None, Some(messege_target))?;
+        canvas.copy(title.texture, None, title.dstrect)?;
         canvas.copy(player.get_texture(), player.get_srcrect(), player.dstrect)?;
         canvas.copy(trees[0].texture, trees[0].srcrect, trees[0].dstrect)?;
         canvas.copy(trees[1].texture, trees[1].srcrect, trees[1].dstrect)?;
