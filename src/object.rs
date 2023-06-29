@@ -51,7 +51,7 @@ pub struct Object<'a> {
 }
 
 pub struct Text<'a> {
-    /* Font Object */
+    /* Text Object */
     pub texture: &'a Texture<'a>,
     pub dstrect: Rect,
 }
