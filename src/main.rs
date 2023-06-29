@@ -13,6 +13,8 @@ const PLAYER_WIDTH: u32 = 20;
 const PLAYER_HEIGHT: u32 = 20;
 const TREE_WIDTH: u32 = 40;
 const TREE_HEIGHT: u32 = 40;
+const TITLE_WIDTH: u32 = 90;
+const TITLE_HEIGHT: u32 = 30;
 
 fn main() -> Result<(), String> {
     /* Run the Game */
@@ -87,7 +89,7 @@ fn main() -> Result<(), String> {
 
     let title = object::Text {
         texture: &title_texture,
-        dstrect: rect::Rect::new(0, 0, 90, 30),
+        dstrect: rect::Rect::new(10, 5, TITLE_WIDTH, TITLE_HEIGHT),
     };
 
     /* Player */
