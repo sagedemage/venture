@@ -49,3 +49,9 @@ pub struct Object<'a> {
     pub srcrect: Rect,
     pub dstrect: Rect,
 }
+
+pub struct Text<'a> {
+    /* Text Object */
+    pub texture: &'a Texture<'a>,
+    pub dstrect: Rect,
+}
