@@ -1,5 +1,5 @@
 # Venture
-Simple video game written in rust using the SDL2 library.
+Simple 2D game written in rust using the SDL2 library.
 
 ![Venture Window](./images/venture_window.png)
 
